@@ -336,7 +336,7 @@
         },
         {
             "key": "URL",
-            "value": "http://localhost:5000"
+            "value": "https://recipe-backend-homework.herokuapp.com"
         }
     ]
 }
