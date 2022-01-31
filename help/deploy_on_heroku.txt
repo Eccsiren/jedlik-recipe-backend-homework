@@ -1,0 +1,17 @@
+1. Download and install Heroku CLI
+   https://devcenter.heroku.com/articles/heroku-cli#download-and-install
+
+2. Deploy on Heroku
+	- Deploy_on_Heroku.pdf
+
+3. Set Config Vars on Heroku:
+	- Heroku_config_vars.jpg
+
+4. Check console on Heroku with Heroku CLI:
+	- cmd.exe
+	- heroku logs --tail --app jedlik-expr-mongoose-backend
+
+5. Check your backend APIs endpoints with Postman:
+	- POST https://jedlik-expr-mongoose-backend.herokuapp.com/auth/login
+
+

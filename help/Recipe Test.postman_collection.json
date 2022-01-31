@@ -1,0 +1,342 @@
+{
+    "info": {
+        "_postman_id": "94282450-ab78-465e-b60f-4a380d4603e0",
+        "name": "Recipe Test",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "Registration",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"name\": \"Teszt Elek\",\r\n    \"email\": \"teszt.elek@teszt.hu\",\r\n    \"password\": \"tesztelek\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/auth/register",
+                            "host": ["{{URL}}"],
+                            "path": ["auth", "register"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Login",
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [""],
+                                "type": "text/javascript"
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": ["var c = pm.cookies.get('Authorization')\r", "pm.collectionVariables.set('cookie', c)"],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"email\": \"teszt.elek@teszt.hu\",\r\n    \"password\": \"tesztelek\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/auth/login",
+                            "host": ["{{URL}}"],
+                            "path": ["auth", "login"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Logout",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": ["var c = \"\"\r", "pm.collectionVariables.set('cookie', c)"],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/auth/logout",
+                            "host": ["{{URL}}"],
+                            "path": ["auth", "logout"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Users",
+            "item": [
+                {
+                    "name": "Get All Users",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/users",
+                            "host": ["{{URL}}"],
+                            "path": ["users"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get User by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/users/61b5f048f39e4edcf5b8a3ca",
+                            "host": ["{{URL}}"],
+                            "path": ["users", "61b5f048f39e4edcf5b8a3ca"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Posts of Logged User",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/users/posts/",
+                            "host": ["{{URL}}"],
+                            "path": ["users", "posts", ""]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get All Posts of User by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/users/posts/61b5f048f39e4edcf5b8a3ca",
+                            "host": ["{{URL}}"],
+                            "path": ["users", "posts", "61b5f048f39e4edcf5b8a3ca"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Modify User",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"address\": {\r\n        \"city\": \"Győr\"\r\n    }\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/users/61b5f09cf39e4edcf5b8a3d4",
+                            "host": ["{{URL}}"],
+                            "path": ["users", "61b5f09cf39e4edcf5b8a3d4"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete User",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/users/61b5f09cf39e4edcf5b8a3d4",
+                            "host": ["{{URL}}"],
+                            "path": ["users", "61b5f09cf39e4edcf5b8a3d4"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Recipes",
+            "item": [
+                {
+                    "name": "Get All Recipes",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/recipe",
+                            "host": ["{{URL}}"],
+                            "path": ["recipe"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Recipe by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/recipe/61f6982c0d313f5c99f1eaee",
+                            "host": ["{{URL}}"],
+                            "path": ["recipe", "61f6982c0d313f5c99f1eaee"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get Paginated Recipes",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/recipe/0/5/description/1/vörösbor",
+                            "host": ["{{URL}}"],
+                            "path": ["recipe", "0", "5", "description", "1", "vörösbor"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Modify Recipe",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"imageURL\": \"https://www.mindmegette.hu/images/240/L/lead_L_crop_201902011306_penne-arrabbiata-csirkes.jpg\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/recipe/61daf48ba5775848e99f555b",
+                            "host": ["{{URL}}"],
+                            "path": ["recipe", "61daf48ba5775848e99f555b"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Recipe",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{URL}}/recipe/61f6b1cbfb65217e14f3a31c",
+                            "host": ["{{URL}}"],
+                            "path": ["recipe", "61f6b1cbfb65217e14f3a31c"]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Recipe",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"author\": {\r\n        \"$oid\": \"61b5ea14f39e4edcf5b8a3bd\"\r\n    },\r\n    \"title\": \"Tradicionális gulyásleves\",\r\n    \"category\": \"levesek\",\r\n    \"votes\": 1,\r\n    \"imageURL\": \"https://image-api.nosalty.hu/nosalty/images/recipes/LF/se/tradicionalis-gulyasleves.jpeg?w=640&h=640&fit=crop&s=f5229a537c2274eca091e270db8dfe02\",\r\n    \"description\": \"A hagymákat kis kockára vágjuk. A húst leöblítjük, szárazra töröljük, majd 2 cm-es kockára daraboljuk. A zsírt felhevítjük, megfonnyasztjuk benne a hagymát, majd félrehúzzuk, a fűszerpaprikákkal összekeverjük, felöntjük 1,5 dl vízzel, majd a vizet elfőzve, zsírjára pirítjuk. Ekkor hozzáadjuk a marhahúst, és kevergetve fehéredésig pirítjuk. Sózzuk, borsozzuk, köménnyel megszórjuk, hozzáadjuk az áttört fokhagymát, a kis kockára vágott paradicsomot, a kicsumázott egész paprikát, babérlevelet. Fedővel lefedve saját levében 90 percet főzzük.Elkészítjük a csipetkét. Ezután kerülnek bele a zöldségek: a karikára vágott sárga- és fehérrépa, a kockára vágott zeller, burgonya, az aprított petrezselyem és zellerzöld, felöntjük 2l -2.5 l vízzel. Letakarva további 50 percet főzzük. Beletesszük a csipetkét, és 10 perc alatt készre főzzük.\",\r\n    \"ingredients\": [ \r\n        \"45dkg marhalábszár\",\r\n        \"30dkg vöröshagyma\",\r\n        \"2db sárgarépa\",\r\n        \"1db zeller\",\r\n        \"1ek só\",\r\n        \"1tk bors\",\r\n        \"3 gerezd fokhagyma\",\r\n        \"2.5l víz\"\r\n    ]\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{URL}}/recipe",
+                            "host": ["{{URL}}"],
+                            "path": ["recipe"]
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "apikey",
+        "apikey": [
+            {
+                "key": "value",
+                "value": "{{cookie}}",
+                "type": "string"
+            },
+            {
+                "key": "key",
+                "value": "Cookie",
+                "type": "string"
+            }
+        ]
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [""]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "cookie",
+            "value": null
+        },
+        {
+            "key": "URL",
+            "value": "http://localhost:5000"
+        }
+    ]
+}
